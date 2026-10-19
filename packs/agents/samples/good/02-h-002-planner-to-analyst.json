@@ -1,0 +1,14 @@
+{
+  "handoff_id": "H-002",
+  "parent_digest": "15ecb403add95824745a0af25cf7bd42fe3abcebc754f9d57c0ac2b5beb85708",
+  "from_agent": "planner",
+  "to_agent": "analyst",
+  "question": "How many metro and micro areas have half or more of renters rent-burdened?",
+  "status": "planned",
+  "kpi_ids": [
+    "K8"
+  ],
+  "evidence": [],
+  "notes": "Use K8: count CBSAs with rent_burdened_share >= 0.5 in gold.fct_cbsa_affordability.",
+  "digest": "604514c4a796a7848367b05110855e03b082ae6d31f82be0ce4ccc1b33e76937"
+}

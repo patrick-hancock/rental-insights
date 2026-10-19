@@ -1,0 +1,27 @@
+{
+  "handoff_id": "H-003",
+  "parent_digest": "604514c4a796a7848367b05110855e03b082ae6d31f82be0ce4ccc1b33e76937",
+  "from_agent": "analyst",
+  "to_agent": "writer",
+  "question": "How many metro and micro areas have half or more of renters rent-burdened?",
+  "status": "answered",
+  "kpi_ids": [
+    "K8"
+  ],
+  "evidence": [
+    {
+      "source_key": "gold.fct_cbsa_affordability",
+      "value": 323
+    },
+    {
+      "source_key": "gold.fct_cbsa_affordability",
+      "value": 935
+    },
+    {
+      "source_key": "wiki/kpis.md#k8-areas-where-most-renters-are-rent-burdened",
+      "value": "rent_burdened_share >= 0.5"
+    }
+  ],
+  "notes": "query_gold: SELECT COUNTIF(rent_burdened_share >= 0.5), COUNT(cbsa_code) FROM fct_cbsa_affordability",
+  "digest": "c86689eb33d54d9f39f679589b1f98351d9cbed3ace64e246f8d20447fb9ad59"
+}

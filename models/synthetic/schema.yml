@@ -1,0 +1,41 @@
+version: 2
+
+# SYNTHETIC: every model here is built only from the made-up seeds in synthetic/seeds (synthetic/README.md).
+
+models:
+  - name: synthetic_actual_monthly
+    description: "SYNTHETIC. One row per made-up property per month: occupied units and rent revenue from leases covering the month end, actual opex by category, and net operating income (rent revenue minus opex)."
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [property_id, month_end]
+    columns:
+      - name: property_id
+        data_tests: [not_null]
+      - name: month_end
+        data_tests: [not_null]
+      - name: occupied_units
+        data_tests: [not_null]
+      - name: total_opex
+        data_tests: [not_null]
+
+  - name: synthetic_variance_monthly
+    description: "SYNTHETIC. Budget vs actual per made-up property per month. Positive variance is favorable. rent_variance = occupancy_effect + rate_effect exactly; noi_variance = rent_variance + opex_variance."
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [property_id, month_end]
+    columns:
+      - name: property_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('synthetic_properties')
+                field: property_id
+      - name: month_end
+        data_tests: [not_null]
+      - name: rent_variance
+        data_tests: [not_null]
+      - name: noi_variance
+        data_tests: [not_null]

@@ -1,0 +1,9 @@
+property_id,property_name,metro_label,city,state,unit_count,year_built,is_synthetic
+SYN-P01,Cedar Row (synthetic),"Austin-Round Rock-San Marcos, TX",Austin,TX,48,2012,true
+SYN-P02,Mesa Vista (synthetic),"Phoenix-Mesa-Chandler, AZ",Mesa,AZ,64,1989,true
+SYN-P03,Laurel Commons (synthetic),"Charlotte-Concord-Gastonia, NC-SC",Charlotte,NC,40,1987,true
+SYN-P04,Olentangy Flats (synthetic),"Columbus, OH",Columbus,OH,56,2008,true
+SYN-P05,Bayshore Court (synthetic),"Tampa-St. Petersburg-Clearwater, FL",Tampa,FL,72,2015,true
+SYN-P06,Front Range Lofts (synthetic),"Denver-Aurora-Centennial, CO",Aurora,CO,32,2010,true
+SYN-P07,Riverbend Place (synthetic),"Nashville-Davidson--Murfreesboro--Franklin, TN",Nashville,TN,36,1999,true
+SYN-P08,Oak Hollow (synthetic),"Raleigh-Cary, NC",Raleigh,NC,52,2018,true

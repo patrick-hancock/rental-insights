@@ -1,0 +1,12 @@
+{
+  "handoff_id": "H-006",
+  "parent_digest": null,
+  "from_agent": "planner",
+  "to_agent": "user",
+  "question": "What's the rent burden in Florida?",
+  "status": "needs_clarification",
+  "kpi_ids": [],
+  "evidence": [],
+  "notes": "'Rent burden' fits K4, K5 and K8. Ask which one before any query.",
+  "digest": "c86dc043a3dc764cf1312a7a2e468921ddb9c5f51f43bd3be76d500e4f7c18d2"
+}

@@ -1,0 +1,12 @@
+{
+  "handoff_id": "H-010",
+  "parent_digest": null,
+  "from_agent": "writer",
+  "to_agent": "analyst",
+  "question": "How many metro and micro areas have half or more of renters rent-burdened?",
+  "status": "planned",
+  "kpi_ids": [],
+  "evidence": [],
+  "notes": "Asks the analyst to change the numbers.",
+  "digest": "99cfeccc29db0d72a4376ee648bceac8c555ddd1d50207d2de03e0fbca532e6e"
+}

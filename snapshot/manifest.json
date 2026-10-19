@@ -1,0 +1,39 @@
+{
+  "project": "rental-insights-511513",
+  "dataset": "gold",
+  "tables": {
+    "dim_date": {
+      "table_type": "TABLE",
+      "parquet_rows": 320,
+      "bigquery_count": 320,
+      "match": true,
+      "exported_at": "2026-10-19T14:41:36+00:00",
+      "file": "snapshot/dim_date.parquet"
+    },
+    "dim_metro": {
+      "table_type": "TABLE",
+      "parquet_rows": 910,
+      "bigquery_count": 910,
+      "match": true,
+      "exported_at": "2026-10-19T14:41:38+00:00",
+      "file": "snapshot/dim_metro.parquet"
+    },
+    "fct_cbsa_affordability": {
+      "table_type": "TABLE",
+      "parquet_rows": 935,
+      "bigquery_count": 935,
+      "match": true,
+      "exported_at": "2026-10-19T14:41:40+00:00",
+      "file": "snapshot/fct_cbsa_affordability.parquet"
+    },
+    "fct_metro_month": {
+      "table_type": "TABLE",
+      "parquet_rows": 237686,
+      "bigquery_count": 237686,
+      "match": true,
+      "exported_at": "2026-10-19T14:41:58+00:00",
+      "file": "snapshot/fct_metro_month.parquet"
+    }
+  },
+  "all_match": true
+}

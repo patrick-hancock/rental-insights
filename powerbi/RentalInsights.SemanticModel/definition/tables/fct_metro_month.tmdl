@@ -1,0 +1,118 @@
+table fct_metro_month
+	lineageTag: fee2a186-020d-5c71-ae31-55e65604ffd0
+
+	measure 'Latest ZORI month' =
+			CALCULATE(
+			    MAX(fct_metro_month[month_end]),
+			    NOT ISBLANK(fct_metro_month[zori]),
+			    REMOVEFILTERS(dim_date)
+			)
+		formatString: yyyy-mm-dd
+		displayFolder: Helpers
+		lineageTag: 5c760f50-9e8e-5ee1-8aa4-f54e2f2f0f11
+
+	measure 'K1 Median typical rent' = MEDIAN(fct_metro_month[zori])
+		formatString: \$#,0
+		displayFolder: Rent trends
+		lineageTag: 6c76fbfc-0a49-5a4a-8474-fc638fe2fe36
+
+	measure 'K1 Median typical rent, latest month' =
+			VAR LatestMonth = [Latest ZORI month]
+			RETURN
+			    CALCULATE([K1 Median typical rent], REMOVEFILTERS(dim_date), dim_date[month_end] = LatestMonth)
+		formatString: \$#,0
+		displayFolder: Rent trends
+		lineageTag: f1dd781c-b186-5104-b867-28eb373fab7c
+
+	measure 'Metros with typical rent, latest month' =
+			VAR LatestMonth = [Latest ZORI month]
+			RETURN
+			    CALCULATE(DISTINCTCOUNT(fct_metro_month[zillow_region_id]), REMOVEFILTERS(dim_date), dim_date[month_end] = LatestMonth)
+		formatString: #,0
+		displayFolder: Rent trends
+		lineageTag: 1851f37b-d020-5413-bebc-ac64fc62dd5e
+
+	measure 'K2 Median rent change YoY' = MEDIAN(fct_metro_month[zori_yoy])
+		formatString: 0.0%
+		displayFolder: Rent trends
+		lineageTag: 1a158d98-48c9-5b9a-aacb-277e556bf8a6
+
+	measure 'K2 Median rent change YoY, latest month' =
+			VAR LatestMonth = [Latest ZORI month]
+			RETURN
+			    CALCULATE([K2 Median rent change YoY], REMOVEFILTERS(dim_date), dim_date[month_end] = LatestMonth)
+		formatString: 0.0%
+		displayFolder: Rent trends
+		lineageTag: c807aaf5-21fc-5590-9867-e40f5df54ca4
+
+	measure 'K3 Median gross rent yield' = MEDIAN(fct_metro_month[gross_rent_yield])
+		formatString: 0.0%
+		displayFolder: Rent trends
+		lineageTag: b3a4a912-b282-5493-8b63-4f44d3f2d5f3
+
+	measure 'K3 Median gross rent yield, latest month' =
+			VAR LatestMonth = [Latest ZORI month]
+			RETURN
+			    CALCULATE([K3 Median gross rent yield], REMOVEFILTERS(dim_date), dim_date[month_end] = LatestMonth)
+		formatString: 0.0%
+		displayFolder: Rent trends
+		lineageTag: 5cfe276c-e0d7-5eef-821c-9e88a1e0cf0b
+
+	column zillow_region_id
+		dataType: int64
+		lineageTag: cd2d138c-05c6-5971-8dfa-89eaf80c0996
+		summarizeBy: none
+		sourceColumn: zillow_region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 6d11868e-31c0-5716-8286-03b442ded393
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column zori
+		dataType: double
+		formatString: \$#,0
+		lineageTag: 019038cd-2b31-5005-8a6c-528e9afdebff
+		summarizeBy: none
+		sourceColumn: zori
+
+		annotation SummarizationSetBy = Automatic
+
+	column zori_yoy
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 08424b4e-17bd-58fb-ad9f-86f382a4778c
+		summarizeBy: none
+		sourceColumn: zori_yoy
+
+		annotation SummarizationSetBy = Automatic
+
+	column gross_rent_yield
+		dataType: double
+		formatString: 0.0%
+		lineageTag: bbf5bcb7-c6c3-57de-b5d6-1dc6c471d3e3
+		summarizeBy: none
+		sourceColumn: gross_rent_yield
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_metro_month = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject = BigQueryProject]),
+				    Project = Source{[Name = BigQueryProject]}[Data],
+				    Dataset = Project{[Name = BigQueryDataset, Kind = "Schema"]}[Data],
+				    Gold = Dataset{[Name = "fct_metro_month", Kind = "Table"]}[Data],
+				    Kept = Table.SelectColumns(Gold, {"zillow_region_id", "month_end", "zori", "zori_yoy", "gross_rent_yield"}),
+				    Filtered = Table.SelectRows(Kept, each [zori] <> null)
+				in
+				    Filtered
+
+	annotation PBI_ResultType = Table

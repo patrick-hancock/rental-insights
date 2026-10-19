@@ -1,0 +1,7 @@
+relationship a628e1ca-03ad-57a3-83d0-93653defbd61
+	fromColumn: fct_metro_month.zillow_region_id
+	toColumn: dim_metro.zillow_region_id
+
+relationship 257f425b-8c48-53f1-a5d7-9e17639c687c
+	fromColumn: fct_metro_month.month_end
+	toColumn: dim_date.month_end

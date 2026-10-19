@@ -1,0 +1,39 @@
+# Offline checks on every push. No cloud credentials: queries run on DuckDB over the gold
+# Parquet snapshot (RI_BACKEND=duckdb), live BigQuery tests stay skipped (RI_LIVE unset),
+# and dbt parse needs no connection.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  RI_BACKEND: duckdb
+
+jobs:
+  checks:
+    # Windows because requirements.txt pins pywin32, which has no Linux wheel.
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: pytest (offline)
+        run: python -m pytest -q
+
+      - name: dbt parse
+        run: dbt parse --profiles-dir .
+
+      - name: Pack check
+        run: python scripts/check_packs.py

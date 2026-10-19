@@ -1,0 +1,25 @@
+{
+  "lease_id": "SYN-L01",
+  "synthetic": true,
+  "monthly_rent": 1450,
+  "rent_changes": [],
+  "security_deposit": 1450,
+  "lease_start": "2026-03-01",
+  "lease_end": "2027-02-28",
+  "term_months": 12,
+  "rent_due_day": 1,
+  "late_fee": {
+    "amount": 75,
+    "grace_days": 4
+  },
+  "pets_allowed": false,
+  "pet_deposit": null,
+  "utilities_included": [
+    "water",
+    "sewer",
+    "trash"
+  ],
+  "renewal_notice_days": 60,
+  "early_termination_fee": null,
+  "flags": []
+}

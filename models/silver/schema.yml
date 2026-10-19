@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: stg_zori_metro_month
+    description: One row per Zillow metro per month with a published ZORI value.
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [zillow_region_id, month_end]
+    columns:
+      - name: zillow_region_id
+        data_tests: [not_null]
+      - name: month_end
+        data_tests: [not_null]
+      - name: zori
+        data_tests: [not_null]
+
+  - name: stg_zhvi_metro_month
+    description: One row per Zillow metro per month with a published ZHVI value.
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [zillow_region_id, month_end]
+    columns:
+      - name: zillow_region_id
+        data_tests: [not_null]
+      - name: zhvi
+        data_tests: [not_null]
+
+  - name: stg_acs_cbsa
+    description: One row per CBSA from ACS 2024 5-year estimates; negative "not available" codes are NULL.
+    columns:
+      - name: cbsa_code
+        data_tests: [unique, not_null]
+      - name: cbsa_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [metro, micro]
+
+  - name: stg_hud_fmr_county
+    description: One row per county or New England town with FY2027 Fair Market Rents.
+    columns:
+      - name: county_fips
+        data_tests: [unique, not_null]
+      - name: fmr_2br
+        data_tests: [not_null]
+      - name: cbsa_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_acs_cbsa')
+                field: cbsa_code
+
+  - name: int_zillow_cbsa_xwalk
+    description: One row per Zillow metro with its matched CBSA (NULL when none matched).
+    columns:
+      - name: zillow_region_id
+        data_tests: [unique, not_null]
+      - name: cbsa_code
+        description: Unique when present, so joins through the crosswalk cannot fan out.
+        data_tests:
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_acs_cbsa')
+                field: cbsa_code

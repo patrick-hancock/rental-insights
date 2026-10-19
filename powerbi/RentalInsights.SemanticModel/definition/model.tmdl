@@ -1,0 +1,14 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["BigQueryProject", "BigQueryDataset", "fct_metro_month", "fct_cbsa_affordability", "dim_metro", "dim_date"]
+
+ref table fct_metro_month
+ref table fct_cbsa_affordability
+ref table dim_metro
+ref table dim_date

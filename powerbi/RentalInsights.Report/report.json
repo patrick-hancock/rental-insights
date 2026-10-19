@@ -1,0 +1,168 @@
+{
+  "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "aa9e07cf903a5d5494a5",
+      "displayName": "Rent trends",
+      "displayOption": 1,
+      "ordinal": 0,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"b7b6b2c03f5a51959d84\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_metro_month.K1 Median typical rent, latest month\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f15\", \"Entity\": \"fct_metro_month\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f15\"}}, \"Property\": \"K1 Median typical rent, latest month\"}, \"Name\": \"fct_metro_month.K1 Median typical rent, latest month\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"e0638634c0175765ba3a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_metro_month.K2 Median rent change YoY, latest month\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f15\", \"Entity\": \"fct_metro_month\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f15\"}}, \"Property\": \"K2 Median rent change YoY, latest month\"}, \"Name\": \"fct_metro_month.K2 Median rent change YoY, latest month\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"b322b9b87eb355278349\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_metro_month.K3 Median gross rent yield, latest month\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f15\", \"Entity\": \"fct_metro_month\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f15\"}}, \"Property\": \"K3 Median gross rent yield, latest month\"}, \"Name\": \"fct_metro_month.K3 Median gross rent yield, latest month\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 950,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"2c9d5171d94d556d9b00\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_metro_month.Metros with typical rent, latest month\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f15\", \"Entity\": \"fct_metro_month\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f15\"}}, \"Property\": \"Metros with typical rent, latest month\"}, \"Name\": \"fct_metro_month.Metros with typical rent, latest month\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 160,
+          "z": 0,
+          "width": 1240,
+          "height": 540,
+          "config": "{\"name\": \"e2bffcf0879055109b4f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 160, \"z\": 0, \"width\": 1240, \"height\": 540}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_date.month_end\"}], \"Y\": [{\"queryRef\": \"fct_metro_month.K1 Median typical rent\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d8\", \"Entity\": \"dim_date\", \"Type\": 0}, {\"Name\": \"f15\", \"Entity\": \"fct_metro_month\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d8\"}}, \"Property\": \"month_end\"}, \"Name\": \"dim_date.month_end\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f15\"}}, \"Property\": \"K1 Median typical rent\"}, \"Name\": \"fct_metro_month.K1 Median typical rent\"}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "9a9ea79fa3b5585faafa",
+      "displayName": "Affordability",
+      "displayOption": 1,
+      "ordinal": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"17b067650b885d479c1b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K4 Median rent-burdened share\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K4 Median rent-burdened share\"}, \"Name\": \"fct_cbsa_affordability.K4 Median rent-burdened share\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"e898bfa054535c169919\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K5 Median severely rent-burdened share\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K5 Median severely rent-burdened share\"}, \"Name\": \"fct_cbsa_affordability.K5 Median severely rent-burdened share\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"d9896a18292b51018b59\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K6 Median rent to income\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K6 Median rent to income\"}, \"Name\": \"fct_cbsa_affordability.K6 Median rent to income\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 950,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"8b4db85e81415ec9a094\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K7 Median market rent to FMR\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K7 Median market rent to FMR\"}, \"Name\": \"fct_cbsa_affordability.K7 Median market rent to FMR\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 160,
+          "z": 0,
+          "width": 1240,
+          "height": 540,
+          "config": "{\"name\": \"f8e18c29f6095446aba7\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 160, \"z\": 0, \"width\": 1240, \"height\": 540}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.cbsa_name\"}, {\"queryRef\": \"fct_cbsa_affordability.cbsa_type\"}, {\"queryRef\": \"fct_cbsa_affordability.rent_burdened_share\"}, {\"queryRef\": \"fct_cbsa_affordability.severely_rent_burdened_share\"}, {\"queryRef\": \"fct_cbsa_affordability.zori_to_fmr_2br\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"cbsa_name\"}, \"Name\": \"fct_cbsa_affordability.cbsa_name\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"cbsa_type\"}, \"Name\": \"fct_cbsa_affordability.cbsa_type\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"rent_burdened_share\"}, \"Name\": \"fct_cbsa_affordability.rent_burdened_share\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"severely_rent_burdened_share\"}, \"Name\": \"fct_cbsa_affordability.severely_rent_burdened_share\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"zori_to_fmr_2br\"}, \"Name\": \"fct_cbsa_affordability.zori_to_fmr_2br\"}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "880aefe85c275284872e",
+      "displayName": "Geography",
+      "displayOption": 1,
+      "ordinal": 2,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"3d7dfb96e43e5d979202\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K8 Areas where most renters are burdened\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K8 Areas where most renters are burdened\"}, \"Name\": \"fct_cbsa_affordability.K8 Areas where most renters are burdened\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"12d166d5e6225361abb1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.CBSA count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"CBSA count\"}, \"Name\": \"fct_cbsa_affordability.CBSA count\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 20,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"14d64605694d5f6db649\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 20, \"z\": 0, \"width\": 290, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.K7 Areas with market rent above FMR\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K7 Areas with market rent above FMR\"}, \"Name\": \"fct_cbsa_affordability.K7 Areas with market rent above FMR\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 160,
+          "z": 0,
+          "width": 1240,
+          "height": 540,
+          "config": "{\"name\": \"aa2a46e1e6765e1e9fd5\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 160, \"z\": 0, \"width\": 1240, \"height\": 540}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fct_cbsa_affordability.first_state\"}, {\"queryRef\": \"fct_cbsa_affordability.K8 Areas where most renters are burdened\"}, {\"queryRef\": \"fct_cbsa_affordability.CBSA count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f22\", \"Entity\": \"fct_cbsa_affordability\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"first_state\"}, \"Name\": \"fct_cbsa_affordability.first_state\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"K8 Areas where most renters are burdened\"}, \"Name\": \"fct_cbsa_affordability.K8 Areas where most renters are burdened\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f22\"}}, \"Property\": \"CBSA count\"}, \"Name\": \"fct_cbsa_affordability.CBSA count\"}]}}}",
+          "filters": "[]"
+        }
+      ]
+    }
+  ]
+}

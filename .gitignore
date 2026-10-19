@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.env.*
+*.key
+*.pem
+secrets*
+*.log
+data/
+logs/
+mcp/logs/
+target/
+dbt_packages/
+.user.yml

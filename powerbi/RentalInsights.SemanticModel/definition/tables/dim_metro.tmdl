@@ -1,0 +1,64 @@
+table dim_metro
+	lineageTag: 144cd0e1-0d6e-5a72-a3f4-0318281fd86e
+
+	column zillow_region_id
+		dataType: int64
+		lineageTag: 93ac2c31-3c2e-5483-81c5-06e37125ae3c
+		summarizeBy: none
+		sourceColumn: zillow_region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column metro_name
+		dataType: string
+		lineageTag: a9b02281-1029-5848-985e-96d23da1eaaa
+		summarizeBy: none
+		sourceColumn: metro_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		lineageTag: e2c8a668-6268-5e62-8c78-51092ab33b3d
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column size_rank
+		dataType: int64
+		lineageTag: 26a5b911-06dc-58d2-8ec5-dba6d64d6417
+		summarizeBy: none
+		sourceColumn: size_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column cbsa_code
+		dataType: string
+		lineageTag: 52c885ab-c2bd-5bae-add7-24b9f437861f
+		summarizeBy: none
+		sourceColumn: cbsa_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column cbsa_type
+		dataType: string
+		lineageTag: 43770108-08c8-5eee-acf6-0b43197195f4
+		summarizeBy: none
+		sourceColumn: cbsa_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_metro = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject = BigQueryProject]),
+				    Project = Source{[Name = BigQueryProject]}[Data],
+				    Dataset = Project{[Name = BigQueryDataset, Kind = "Schema"]}[Data],
+				    Gold = Dataset{[Name = "dim_metro", Kind = "Table"]}[Data],
+				    Kept = Table.SelectColumns(Gold, {"zillow_region_id", "metro_name", "state_code", "size_rank", "cbsa_code", "cbsa_type"})
+				in
+				    Kept
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: Raw source tables loaded by ingest/ingest_bronze.py, every column a STRING. Row counts are in ingest/manifest.json.
+    database: rental-insights-511513
+    schema: bronze
+    tables:
+      - name: zillow_zori_metro
+        description: Zillow Observed Rent Index, smoothed, all homes plus multifamily, one wide row per metro.
+      - name: zillow_zhvi_metro
+        description: Zillow Home Value Index, middle tier, smoothed and seasonally adjusted, one wide row per metro.
+      - name: census_acs5_cbsa
+        description: Census ACS 2024 5-year estimates, one row per metro or micro area (CBSA). Variables are listed in the manifest.
+      - name: hud_fmr_fy27
+        description: HUD Fair Market Rents FY2027, one row per county or New England town.

@@ -1,0 +1,42 @@
+table dim_date
+	lineageTag: a1a9f9da-1c1a-5ac6-ba23-7bed311a95c0
+
+	column month_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: cc819b9b-4d20-5711-a0b5-f45de84809fc
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0994593f-f7fd-5d2a-b174-2253831e2b9b
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: ed6dd05b-f309-5208-b8d2-8741a494c3af
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject = BigQueryProject]),
+				    Project = Source{[Name = BigQueryProject]}[Data],
+				    Dataset = Project{[Name = BigQueryDataset, Kind = "Schema"]}[Data],
+				    Gold = Dataset{[Name = "dim_date", Kind = "Table"]}[Data],
+				    Kept = Table.SelectColumns(Gold, {"month_end", "year", "year_month"})
+				in
+				    Kept
+
+	annotation PBI_ResultType = Table

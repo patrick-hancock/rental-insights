@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: One row per calendar month (month-end date) covered by any Zillow series.
+    columns:
+      - name: month_end
+        data_tests: [unique, not_null]
+
+  - name: dim_metro
+    description: One row per Zillow metro, with its Census CBSA where one matched.
+    columns:
+      - name: zillow_region_id
+        data_tests: [unique, not_null]
+      - name: match_method
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [name, override]
+
+  - name: fct_metro_month
+    description: One row per Zillow metro per month where ZORI or ZHVI has a value.
+    columns:
+      - name: metro_month_key
+        data_tests: [unique, not_null]
+      - name: zillow_region_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_metro')
+                field: zillow_region_id
+      - name: month_end
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: month_end
+
+  - name: fct_cbsa_affordability
+    description: One row per CBSA with ACS 2024 rent and income, HUD FY2027 FMR and the latest matched Zillow rent.
+    columns:
+      - name: cbsa_code
+        data_tests: [unique, not_null]
+      - name: hud_fmr_2br_weighted
+        description: Present for every metro CBSA; HUD covers all 393 (measured 2026-10-13).

@@ -1,0 +1,31 @@
+{
+  "lease_id": "SYN-L04",
+  "synthetic": true,
+  "monthly_rent": 1800,
+  "rent_changes": [
+    {
+      "effective": "2027-09-01",
+      "monthly_rent": 1890
+    }
+  ],
+  "security_deposit": 2000,
+  "lease_start": "2026-09-01",
+  "lease_end": "2028-08-31",
+  "term_months": 24,
+  "rent_due_day": 3,
+  "late_fee": {
+    "amount": 100,
+    "grace_days": null
+  },
+  "pets_allowed": true,
+  "pet_deposit": 0,
+  "utilities_included": [
+    "trash"
+  ],
+  "renewal_notice_days": null,
+  "early_termination_fee": null,
+  "flags": [
+    "handwritten_change",
+    "conflicting_terms"
+  ]
+}

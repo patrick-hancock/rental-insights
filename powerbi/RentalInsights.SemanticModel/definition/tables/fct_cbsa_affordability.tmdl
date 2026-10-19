@@ -1,0 +1,150 @@
+table fct_cbsa_affordability
+	lineageTag: af728275-89c0-5f4b-bc87-d41938a02d8f
+
+	measure 'CBSA count' = COUNTROWS(fct_cbsa_affordability)
+		formatString: #,0
+		displayFolder: Affordability
+		lineageTag: 7987b31c-1d8b-56ad-a74e-9f5277583070
+
+	measure 'K4 Median rent-burdened share' = MEDIAN(fct_cbsa_affordability[rent_burdened_share])
+		formatString: 0.0%
+		displayFolder: Affordability
+		lineageTag: 9bb9c041-8abf-561e-9848-e5fdcc24e285
+
+	measure 'K5 Median severely rent-burdened share' = MEDIAN(fct_cbsa_affordability[severely_rent_burdened_share])
+		formatString: 0.0%
+		displayFolder: Affordability
+		lineageTag: 401dded2-614f-5d3c-bc46-f5a440deaadc
+
+	measure 'K6 Median rent to income' = MEDIAN(fct_cbsa_affordability[rent_to_income])
+		formatString: 0.0%
+		displayFolder: Affordability
+		lineageTag: a1df6646-4d05-5cba-b2e5-bad39e0f9630
+
+	measure 'K7 Median market rent to FMR' = MEDIAN(fct_cbsa_affordability[zori_to_fmr_2br])
+		formatString: 0.00
+		displayFolder: Affordability
+		lineageTag: 7b2af5e4-3bd8-53e9-8ee0-293a60cbfc5f
+
+	measure 'K7 Areas with market rent and FMR' = CALCULATE(COUNTROWS(fct_cbsa_affordability), NOT ISBLANK(fct_cbsa_affordability[zori_to_fmr_2br]))
+		formatString: #,0
+		displayFolder: Affordability
+		lineageTag: b49d6a9a-c4da-584b-97b9-1a12a4bb5a1f
+
+	measure 'K7 Areas with market rent above FMR' = CALCULATE(COUNTROWS(fct_cbsa_affordability), fct_cbsa_affordability[zori_to_fmr_2br] > 1)
+		formatString: #,0
+		displayFolder: Affordability
+		lineageTag: 98d846bd-0070-5fd7-b4fd-9455981f10cb
+
+	measure 'K8 Areas where most renters are burdened' = CALCULATE(COUNTROWS(fct_cbsa_affordability), fct_cbsa_affordability[rent_burdened_share] >= 0.5)
+		formatString: #,0
+		displayFolder: Geography
+		lineageTag: 15390cd7-917a-519c-882b-a5fa9929f35d
+
+	column cbsa_code
+		dataType: string
+		lineageTag: 91677c15-92b3-59d9-aec1-520a25ecd4c7
+		summarizeBy: none
+		sourceColumn: cbsa_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column cbsa_name
+		dataType: string
+		lineageTag: 91fccf19-835e-5156-8435-795c5b5afdfd
+		summarizeBy: none
+		sourceColumn: cbsa_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column cbsa_type
+		dataType: string
+		lineageTag: 83a03c37-7c0a-5a7e-9a02-1e5e7fa33056
+		summarizeBy: none
+		sourceColumn: cbsa_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column population
+		dataType: int64
+		formatString: #,0
+		lineageTag: 374afac1-eb18-5c1e-9039-4ba51eed88d1
+		summarizeBy: sum
+		sourceColumn: population
+
+		annotation SummarizationSetBy = Automatic
+
+	column rent_burdened_share
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 68074188-1f65-5709-ad76-393bd9d697a2
+		summarizeBy: none
+		sourceColumn: rent_burdened_share
+
+		annotation SummarizationSetBy = Automatic
+
+	column severely_rent_burdened_share
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 906e60a5-2a60-5ddd-8638-51ff3c00c774
+		summarizeBy: none
+		sourceColumn: severely_rent_burdened_share
+
+		annotation SummarizationSetBy = Automatic
+
+	column rent_to_income
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 378a7e4e-aef7-5863-8214-fb4927ed5d7b
+		summarizeBy: none
+		sourceColumn: rent_to_income
+
+		annotation SummarizationSetBy = Automatic
+
+	column hud_fmr_2br_weighted
+		dataType: double
+		formatString: \$#,0
+		lineageTag: ead9ce9f-713c-5d18-88b4-e40b282f7635
+		summarizeBy: none
+		sourceColumn: hud_fmr_2br_weighted
+
+		annotation SummarizationSetBy = Automatic
+
+	column latest_zori
+		dataType: double
+		formatString: \$#,0
+		lineageTag: 815b155b-b357-58f6-87c6-285c03797a91
+		summarizeBy: none
+		sourceColumn: latest_zori
+
+		annotation SummarizationSetBy = Automatic
+
+	column zori_to_fmr_2br
+		dataType: double
+		formatString: 0.00
+		lineageTag: 6ba84ee5-5fd3-5e1f-9e05-87c457ae6382
+		summarizeBy: none
+		sourceColumn: zori_to_fmr_2br
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_state = MID(fct_cbsa_affordability[cbsa_name], SEARCH(", ", fct_cbsa_affordability[cbsa_name], 1, 0) + 2, 2)
+		dataType: string
+		lineageTag: b65115a6-6ec2-56cc-80c7-e69234d2a248
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_cbsa_affordability = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject = BigQueryProject]),
+				    Project = Source{[Name = BigQueryProject]}[Data],
+				    Dataset = Project{[Name = BigQueryDataset, Kind = "Schema"]}[Data],
+				    Gold = Dataset{[Name = "fct_cbsa_affordability", Kind = "Table"]}[Data],
+				    Kept = Table.SelectColumns(Gold, {"cbsa_code", "cbsa_name", "cbsa_type", "population", "rent_burdened_share", "severely_rent_burdened_share", "rent_to_income", "hud_fmr_2br_weighted", "latest_zori", "zori_to_fmr_2br"})
+				in
+				    Kept
+
+	annotation PBI_ResultType = Table

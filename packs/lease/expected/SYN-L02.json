@@ -1,0 +1,18 @@
+{
+  "lease_id": "SYN-L02",
+  "synthetic": true,
+  "monthly_rent": 2100,
+  "rent_changes": [],
+  "security_deposit": 2100,
+  "lease_start": "2026-07-15",
+  "lease_end": null,
+  "term_months": 6,
+  "rent_due_day": 5,
+  "late_fee": null,
+  "pets_allowed": true,
+  "pet_deposit": 400,
+  "utilities_included": [],
+  "renewal_notice_days": null,
+  "early_termination_fee": 4200,
+  "flags": []
+}

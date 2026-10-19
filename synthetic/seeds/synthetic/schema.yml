@@ -1,0 +1,147 @@
+version: 2
+
+# SYNTHETIC: every seed here is made-up data from synthetic/generate.py (see synthetic/README.md).
+
+seeds:
+  - name: synthetic_properties
+    description: "SYNTHETIC. One row per made-up property. metro_label is a real metro name used as a label only."
+    config:
+      schema: synthetic
+      column_types:
+        unit_count: int64
+        year_built: int64
+        is_synthetic: bool
+    columns:
+      - name: property_id
+        data_tests: [unique, not_null]
+      - name: property_name
+        data_tests: [unique, not_null]
+      - name: unit_count
+        data_tests: [not_null]
+      - name: is_synthetic
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true]
+                quote: false
+
+  - name: synthetic_units
+    description: "SYNTHETIC. One row per made-up apartment unit. market_rent_oct2024 is an invented asking rent at the start of the period."
+    config:
+      schema: synthetic
+      column_types:
+        unit_number: string
+        bedrooms: int64
+        square_feet: int64
+        market_rent_oct2024: numeric
+    columns:
+      - name: unit_id
+        data_tests: [unique, not_null]
+      - name: property_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('synthetic_properties')
+                field: property_id
+      - name: bedrooms
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3]
+                quote: false
+      - name: market_rent_oct2024
+        data_tests: [not_null]
+
+  - name: synthetic_leases
+    description: "SYNTHETIC. One row per made-up lease. Leases run whole months (start on the 1st, end on a month's last day). in_place leases were signed before Oct 2024. IDs SYN-LS-nnnnn do not overlap the SYN-Lnn sample leases in packs/lease."
+    config:
+      schema: synthetic
+      column_types:
+        start_date: date
+        end_date: date
+        term_months: int64
+        monthly_rent: numeric
+    columns:
+      - name: lease_id
+        data_tests: [unique, not_null]
+      - name: unit_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('synthetic_units')
+                field: unit_id
+      - name: start_date
+        data_tests: [not_null]
+      - name: end_date
+        data_tests: [not_null]
+      - name: monthly_rent
+        data_tests: [not_null]
+      - name: lease_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [in_place, new, renewal]
+
+  - name: synthetic_budget_monthly
+    description: "SYNTHETIC. One row per made-up property per month (Oct 2024 to Sep 2026): planned occupied units, planned average rent and 4 planned operating-expense lines in dollars. Fiscal years run October to September."
+    config:
+      schema: synthetic
+      column_types:
+        month_end: date
+        fiscal_year: int64
+        budget_occupied_units: int64
+        budget_avg_rent: numeric
+        budget_repairs_maintenance: numeric
+        budget_utilities: numeric
+        budget_payroll: numeric
+        budget_taxes_insurance: numeric
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [property_id, month_end]
+    columns:
+      - name: property_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('synthetic_properties')
+                field: property_id
+      - name: month_end
+        data_tests: [not_null]
+      - name: budget_occupied_units
+        data_tests: [not_null]
+      - name: budget_avg_rent
+        data_tests: [not_null]
+
+  - name: synthetic_actual_opex
+    description: "SYNTHETIC. Ledger-style actual operating expenses: one row per made-up property, month and category, in dollars. note marks the 3 planted events (HVAC replacement, insurance renewal, open payroll position) and is empty otherwise."
+    config:
+      schema: synthetic
+      column_types:
+        month_end: date
+        amount: numeric
+        note: string
+    data_tests:
+      - unique_combo:
+          arguments:
+            columns: [property_id, month_end, category]
+    columns:
+      - name: property_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('synthetic_properties')
+                field: property_id
+      - name: month_end
+        data_tests: [not_null]
+      - name: category
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [repairs_maintenance, utilities, payroll, taxes_insurance]
+      - name: amount
+        data_tests: [not_null]

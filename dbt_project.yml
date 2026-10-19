@@ -1,0 +1,28 @@
+name: rental_insights
+version: "1.0.0"
+profile: rental_insights
+config-version: 2
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+seed-paths: ["seeds", "synthetic/seeds"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  rental_insights:
+    silver:
+      +schema: silver
+      +materialized: view
+    gold:
+      +schema: gold
+      # The BigQuery sandbox has no DML, so gold is rebuilt as whole tables (CREATE OR REPLACE).
+      +materialized: table
+
+seeds:
+  rental_insights:
+    +schema: silver
+    zillow_cbsa_overrides:
+      +column_types:
+        cbsa_code: string

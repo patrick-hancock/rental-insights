@@ -1,0 +1,9 @@
+expression BigQueryProject = "rental-insights-511513" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: cf621b26-0d6c-51e3-a7b2-220120331dc8
+
+	annotation PBI_ResultType = Text
+
+expression BigQueryDataset = "gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 9c7b1a6d-6835-5116-b56c-680c91373d4a
+
+	annotation PBI_ResultType = Text

@@ -1,0 +1,19 @@
+{
+  "handoff_id": "H-011",
+  "parent_digest": null,
+  "from_agent": "analyst",
+  "to_agent": "writer",
+  "question": "How many metro and micro areas have half or more of renters rent-burdened?",
+  "status": "answered",
+  "kpi_ids": [
+    "K8"
+  ],
+  "evidence": [
+    {
+      "source_key": "silver.stg_acs_cbsa",
+      "value": 323
+    }
+  ],
+  "notes": "Read from silver instead of gold.",
+  "digest": "27520869adc5e6a90523498482a3f8c17c4f599db262dc4d00595ec2432f9a37"
+}

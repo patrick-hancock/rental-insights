@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rental-insights/packs/agents/handoff.schema.json",
+  "title": "Agent handoff",
+  "description": "One message passed between agents in the rental Q&A workflow (planner -> analyst -> writer -> reviewer). Shape only; scripts/validate_handoff.py adds the route, source-key, evidence and digest checks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["handoff_id", "parent_digest", "from_agent", "to_agent", "question", "status", "kpi_ids", "evidence", "notes", "digest"],
+  "properties": {
+    "handoff_id": {"type": "string", "pattern": "^H-[0-9]{3}$"},
+    "parent_digest": {"description": "digest of the handoff this one answers; null only for the first handoff", "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "from_agent": {"enum": ["user", "planner", "analyst", "writer", "reviewer"]},
+    "to_agent": {"enum": ["planner", "analyst", "writer", "reviewer", "user"]},
+    "question": {"type": "string", "minLength": 3, "maxLength": 500},
+    "status": {"enum": ["planned", "answered", "no_data", "needs_clarification", "refused", "approved", "rejected"]},
+    "kpi_ids": {"type": "array", "items": {"type": "string", "pattern": "^K[1-8]$"}, "uniqueItems": true},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_key", "value"],
+        "properties": {
+          "source_key": {"type": "string", "minLength": 3},
+          "value": {"type": ["number", "string"]}
+        }
+      }
+    },
+    "notes": {"type": "string", "maxLength": 1000},
+    "digest": {"description": "sha256 of the canonical JSON of every other field (sorted keys, no spaces)", "type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
